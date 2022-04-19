@@ -6,10 +6,35 @@ body {
     background-color: rgb(229, 157, 56);
 }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .header {
     height: 20vh;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+.logo {
+    font-size: 66px;
+    font-family: Impact;
+}
+
+.top-ui {
+    display: flex;
+}
+
 
 .search-container {
     display: flex;
@@ -37,4 +62,74 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 10px;
+}
+
+.map-stage {
+    width: 680px;
+    height: 400px;
+}
+
+
+.location-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copy-btn {
+    background-color: rgb(93, 93, 93);
+    color: antiquewhite;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.main-section {
+    height: 400px; 
+    width: 100%;
+    display: flex;
+    
+    
+}
+
+.weather {
+    height: 100px;
+    background-color: rgb(164, 114, 32);
+}
+
+.weather-locatios {
+    background: rgba(0, 0, 0, 0.116);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.locations-table {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.location-card {
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 260px;
+    height: 60px;
+    background-color: rgb(60, 56, 53);
+    color: antiquewhite;
+}
+
+
+@media (max-width: 1000px) {
+
+    .header {
+        flex-direction: column;
+    }
+  
+
 }
