@@ -1,4 +1,5 @@
 import { locService } from './loc.service.js'
+import { storage } from './storage.service.js'
 
 export const mapService = {
     initMap,
@@ -31,9 +32,11 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
             infoWindow.open(gMap);
             gMap.addListener("click", (mapsMouseEvent) => {
+                let loc = locService.getLocation()
                 let lat = mapsMouseEvent.latLng.lat()
                 let lng = mapsMouseEvent.latLng.lng()
                 locService.addLocation(lat,lng)
+                storage.saveToStorage('DB',loc)
                 infoWindow.close();
                 infoWindow = new google.maps.InfoWindow({
                     position: mapsMouseEvent.latLng,
