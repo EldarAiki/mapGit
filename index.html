@@ -15,9 +15,9 @@
                 <h1 class="logo">TravelTip</h1>
                 <div class="top-ui">
                     <div class="search-container">
-                        <input class="search-bar" type="text">
+                        <input id="search" class="search-bar" onchange="onSearch()" type="text">
                     </div>
-                    <div class="go-btn">Go</div>
+                    <div class="go-btn" onclick="onSearch()">Go</div>
                     <div onclick="onGetUserPos()" class="my-loc-btn">My Location</div>
                 </div>
             </header>
@@ -52,6 +52,7 @@
 </div>
     
     
+    <script src="js/lib/axios.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 </html>

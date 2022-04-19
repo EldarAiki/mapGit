@@ -1,4 +1,6 @@
 
+// import { ControllerService } from './app.controller.js'
+
 export const mapService = {
     initMap,
     addMarker,
@@ -6,6 +8,7 @@ export const mapService = {
 }
 
 var gMap;
+const API_KEY = 'AIzaSyClV3yyxNSXrYdiQq_2hdyYh8D82Lg_B38'; 
 
 
 
@@ -61,7 +64,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyClV3yyxNSXrYdiQq_2hdyYh8D82Lg_B38'; //done: Enter your API Key
+    //done: Enter your API Key
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -72,3 +75,9 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+// function getAddress(address) {
+//     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${API_KEY}`)
+//     .then(address => address.data)
+//     .then(renderAdress)
+// }

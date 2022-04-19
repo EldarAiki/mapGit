@@ -1,11 +1,20 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
+
+export const ControllerService = {
+   renderAdress
+}
+
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSearch = onSearch;
+window.getAddress = getAddress;
+
 
 
 
@@ -61,4 +70,29 @@ function onPanTo() {
 }
 
 
-// test if push works 
+function onSearch() {
+    const val = document.querySelector('#search').value
+    getAddress(val)
+}
+
+
+function renderAdress(address) {
+    
+    const coords = address.results[0].geometry.location
+    const location = address.results[0].formatted_address
+
+    console.log('coords' , coords);
+    console.log('location', location);
+
+
+
+
+    
+}
+
+function getAddress(address) {
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},+Mountain+View,+CA&key=AIzaSyClV3yyxNSXrYdiQq_2hdyYh8D82Lg_B38`)
+    .then(address => address.data)
+    .then(renderAdress)
+    
+}
