@@ -16,6 +16,8 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onSearch = onSearch;
 window.getAddress = getAddress;
+window.onDeleteLocation = onDeleteLocation;
+window.onGoLocation = onGoLocation;
 
 
 
