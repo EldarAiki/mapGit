@@ -16,6 +16,8 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onSearch = onSearch;
 window.getAddress = getAddress;
+window.onMyLoc = onMyLoc;
+
 
 
 
@@ -106,13 +108,9 @@ function renderAdress(address) {
     console.log('coords' , coords);
     console.log('location', location);
 
-    onGoLocation(coords.lat, coords.lng)
+    onGoLocation(coords.lng , coords.lat)
 
     document.querySelector('.info').innerText = 'Location: ' + location 
-
-
-
-    
 }
 
 function getAddress(address) {
@@ -121,3 +119,24 @@ function getAddress(address) {
     .then(renderAdress)
     
 }
+
+
+// function onMyLocation()  {
+
+//     console.log('my location');
+
+//     navigator.geolocation.getCurrentPosition(
+//         function (position) {
+//            initMap(position.coords.latitude, position.coords.longitude)
+//         },
+//         function errorCallback(error) {
+//            console.log(error)
+//         }
+//      );
+// }
+
+function onMyLoc() {
+    mapService.onMyLocation()
+}
+      
+    

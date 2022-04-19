@@ -6,7 +6,8 @@ import { storage } from './storage.service.js'
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    onMyLocation: onMyLocation
 }
 
 var gMap;
@@ -51,6 +52,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             });
         })
 
+        
 
 }
 
@@ -86,6 +88,23 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
+
+
+function onMyLocation()  {
+
+    console.log('my location');
+
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+           initMap(position.coords.latitude, position.coords.longitude)
+        },
+        function errorCallback(error) {
+           console.log(error)
+        }
+     );
+}
+     
 
 // function getAddress(address) {
 //     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${API_KEY}`)
