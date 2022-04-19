@@ -39,7 +39,7 @@ function renderLocation() {
     let elLocation = document.querySelector('.locations-table')
     const strHTMLs = locations.map((location,idx) => 
          `<div class="location-card">
-         ${location.lng},${location.lat}
+         ${location.name}
          <button onclick="onGoLocation(${location.lng},${location.lat})">Go</button>
          <button onclick="onDeleteLocation(${idx})">Delete</button>
          </div>`
@@ -66,8 +66,14 @@ function onDeleteLocation(idx) {
 
 function onAddMarker() {
     let locations = locService.getLocation()
-    console.log('location', locations)
-    locations.forEach(location => mapService.addMarker({lat : location.lat,lng : location.lng}))
+    let name = prompt('Enter the name of the location')
+    locations.forEach(location => {
+         mapService.addMarker({lat : location.lat,lng : location.lng})
+         location.name = name
+         storage.saveToStorage('DB',locations)
+
+         console.log('location.name', location.name)
+    })
     renderLocation()
 }
 

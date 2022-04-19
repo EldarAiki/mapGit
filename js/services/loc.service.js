@@ -38,10 +38,10 @@ function getLocation() {
     return gLocation
 }
 
-function createLocation(lat,lng) {
+function createLocation(lat,lng,name = '') {
     return {
         // id,
-        name: '1',
+        name,
         lat,
         lng,
         // createdAt,
