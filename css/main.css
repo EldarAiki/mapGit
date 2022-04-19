@@ -103,12 +103,12 @@ body {
     background: rgba(0, 0, 0, 0.116);
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 310px;
 }
 
 .locations-table {
     height: 300px;
-    width: 300px;
+    width: 310px;
     display: flex;
     flex-direction: column;
     gap: 10%;
@@ -118,10 +118,11 @@ body {
     margin-top: 20px;
     margin-left: 10px;
     border-radius: 10px;
-    width: 260px;
-    height: 60px;
+    width: 290px;
+    height: 70px;
     background-color: rgb(60, 56, 53);
     color: antiquewhite;
+    margin-right: 10px;
 }
 
 
