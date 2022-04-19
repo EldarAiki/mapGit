@@ -38,3 +38,65 @@ body {
     align-items: center;
     margin-left: 10px;
 }
+
+.map-stage {
+    width: 50%;
+    height: 400px;
+}
+
+.map-stage {
+    display: flex;
+    flex-basis: auto;
+}
+
+.location-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copy-btn {
+    background-color: rgb(93, 93, 93);
+    color: antiquewhite;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.main-section {
+    height: 400px; 
+    width: 100%;
+    
+}
+
+.weather {
+    height: 100px;
+    background-color: rgb(164, 114, 32);
+}
+
+.weather-locatios {
+    background: rgba(0, 0, 0, 0.116);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.locations-table {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+.location-card {
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 260px;
+    height: 60px;
+    background-color: rgb(60, 56, 53);
+    color: antiquewhite;
+}
