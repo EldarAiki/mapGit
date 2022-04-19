@@ -17,10 +17,10 @@ function getLocs() {
     });
 }
 
-function createLocation() {
+function createLocation(lat,lng) {
     return {
         id,
-        name,
+        name: '1',
         lat,
         lng,
         createdAt,
