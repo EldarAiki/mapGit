@@ -8,6 +8,8 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onGoLocation = onGoLocation;
+window.onDeleteLocation = onDeleteLocation;
 
 
 
@@ -24,8 +26,12 @@ renderLocation()
 function renderLocation() {
     let locations = storage.loadFromStorage('DB')
     let elLocation = document.querySelector('.locations-table')
-    const strHTMLs = locations.map(location => 
-         `<div class="location-card">${location.lng},${location.lat}</div>`
+    const strHTMLs = locations.map((location,idx) => 
+         `<div class="location-card">
+         ${location.lng},${location.lat}
+         <button onclick="onGoLocation(${location.lng},${location.lat})">Go</button>
+         <button onclick="onDeleteLocation(${idx})">Delete</button>
+         </div>`
     )
     elLocation.innerHTML = strHTMLs.join('')
 }
@@ -38,15 +44,20 @@ function getPosition() {
     })
 }
 
+function onGoLocation(lng,lat) {
+    mapService.panTo(lat,lng);
+}
 
+function onDeleteLocation(idx) {
+    locService.removeLocation(idx)
+    renderLocation()
+}
 
 function onAddMarker() {
-    console.log('Adding a marker');
     let locations = locService.getLocation()
     console.log('location', locations)
     locations.forEach(location => mapService.addMarker({lat : location.lat,lng : location.lng}))
-    // mapService.addMarker({ location[0].lat, location[0].lng });
-    // renderLocation()
+    renderLocation()
 }
 
 function onGetLocs() {

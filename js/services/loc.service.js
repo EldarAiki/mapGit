@@ -1,8 +1,12 @@
+import { storage } from './storage.service.js'
+
+
 export const locService = {
     getLocs,
     getLocation,
     createLocation,
-    addLocation
+    addLocation,
+    removeLocation
 }
 
 let gLocation = [] 
@@ -23,6 +27,11 @@ function getLocs() {
 function addLocation(lat,lng) {
     const location = createLocation(lat,lng)
     gLocation.push(location)
+}
+
+function removeLocation(idx) {
+    gLocation.splice(idx,1)
+    storage.saveToStorage('DB',gLocation)
 }
 
 function getLocation() {
