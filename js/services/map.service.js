@@ -1,3 +1,4 @@
+import { locService } from './loc.service.js'
 
 export const mapService = {
     initMap,
@@ -5,12 +6,13 @@ export const mapService = {
     panTo
 }
 
-var gMap;
+var gMap
 
 
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
+    // let locations = locService.getLocation()
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -25,23 +27,29 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             let infoWindow = new google.maps.InfoWindow({
                 content: "Click the map to get Lat/Lng!",
                 position: { lat, lng },
-              });
-            
-              infoWindow.open(gMap);
-              gMap.addListener("click", (mapsMouseEvent) => {
+            });
+
+            infoWindow.open(gMap);
+            gMap.addListener("click", (mapsMouseEvent) => {
+                let lat = mapsMouseEvent.latLng.lat()
+                let lng = mapsMouseEvent.latLng.lng()
+                locService.addLocation(lat,lng)
                 infoWindow.close();
                 infoWindow = new google.maps.InfoWindow({
-                  position: mapsMouseEvent.latLng,
+                    position: mapsMouseEvent.latLng,
                 });
                 infoWindow.setContent(
-                  JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                    JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 );
                 infoWindow.open(gMap);
-              });
+            });
         })
 
-    
+
 }
+
+
+
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({

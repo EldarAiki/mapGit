@@ -16,9 +16,9 @@ function onInit() {
         })
         .catch(() => console.log('Error: cannot init map'));
 }
-
+renderLocation()
 function renderLocation() {
-    
+    console.log('createLocation(lat,lng)', locService.createLocation(2,2))
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
