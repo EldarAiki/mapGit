@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(229, 157, 56);
+}
+
+.header {
+    height: 20vh;
+    display: flex;
+}
+
+.search-container {
+    display: flex;
+    height: 30px;
+   
+}
+
+.go-btn {
+    background-color: rgb(93, 93, 93);
+    color: antiquewhite;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.my-loc-btn {
+    background-color: rgb(93, 93, 93);
+    color: antiquewhite;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
