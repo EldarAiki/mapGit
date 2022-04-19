@@ -1,5 +1,7 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
+import { storage } from './services/storage.service.js'
+
 
 
 
@@ -26,8 +28,19 @@ function onInit() {
         .catch(() => console.log('Error: cannot init map'));
 }
 
+renderLocation()
+
 function renderLocation() {
-    
+    let locations = storage.loadFromStorage('DB')
+    let elLocation = document.querySelector('.locations-table')
+    const strHTMLs = locations.map((location,idx) => 
+         `<div class="location-card">
+         ${location.lng},${location.lat}
+         <button onclick="onGoLocation(${location.lng},${location.lat})">Go</button>
+         <button onclick="onDeleteLocation(${idx})">Delete</button>
+         </div>`
+    )
+    elLocation.innerHTML = strHTMLs.join('')
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -38,11 +51,20 @@ function getPosition() {
     })
 }
 
+function onGoLocation(lng,lat) {
+    mapService.panTo(lat,lng);
+}
 
+function onDeleteLocation(idx) {
+    locService.removeLocation(idx)
+    renderLocation()
+}
 
 function onAddMarker() {
-    console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    let locations = locService.getLocation()
+    console.log('location', locations)
+    locations.forEach(location => mapService.addMarker({lat : location.lat,lng : location.lng}))
+    renderLocation()
 }
 
 function onGetLocs() {
@@ -84,6 +106,9 @@ function renderAdress(address) {
     console.log('coords' , coords);
     console.log('location', location);
 
+    onGoLocation(coords.lat, coords.lng)
+
+    document.querySelector('.info').innerText = 'Location: ' + location 
 
 
 

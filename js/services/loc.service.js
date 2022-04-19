@@ -1,8 +1,15 @@
+import { storage } from './storage.service.js'
+
+
 export const locService = {
-    getLocs
+    getLocs,
+    getLocation,
+    createLocation,
+    addLocation,
+    removeLocation
 }
 
-
+let gLocation = [] 
 
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
@@ -17,14 +24,28 @@ function getLocs() {
     });
 }
 
+function addLocation(lat,lng) {
+    const location = createLocation(lat,lng)
+    gLocation.push(location)
+}
+
+function removeLocation(idx) {
+    gLocation.splice(idx,1)
+    storage.saveToStorage('DB',gLocation)
+}
+
+function getLocation() {
+    return gLocation
+}
+
 function createLocation(lat,lng) {
     return {
-        id,
+        // id,
         name: '1',
         lat,
         lng,
-        createdAt,
-        updatedAt
+        // createdAt,
+        // updatedAt
     }
 }
 

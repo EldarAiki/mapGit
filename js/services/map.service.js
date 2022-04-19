@@ -1,3 +1,5 @@
+import { locService } from './loc.service.js'
+import { storage } from './storage.service.js'
 
 // import { ControllerService } from './app.controller.js'
 
@@ -14,6 +16,7 @@ const API_KEY = 'AIzaSyClV3yyxNSXrYdiQq_2hdyYh8D82Lg_B38';
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
+    // let locations = locService.getLocation()
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -28,23 +31,31 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             let infoWindow = new google.maps.InfoWindow({
                 content: "Click the map to get Lat/Lng!",
                 position: { lat, lng },
-              });
-            
-              infoWindow.open(gMap);
-              gMap.addListener("click", (mapsMouseEvent) => {
+            });
+
+            infoWindow.open(gMap);
+            gMap.addListener("click", (mapsMouseEvent) => {
+                let loc = locService.getLocation()
+                let lat = mapsMouseEvent.latLng.lat()
+                let lng = mapsMouseEvent.latLng.lng()
+                locService.addLocation(lat,lng)
+                storage.saveToStorage('DB',loc)
                 infoWindow.close();
                 infoWindow = new google.maps.InfoWindow({
-                  position: mapsMouseEvent.latLng,
+                    position: mapsMouseEvent.latLng,
                 });
                 infoWindow.setContent(
-                  JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                    JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 );
                 infoWindow.open(gMap);
-              });
+            });
         })
 
-    
+
 }
+
+
+
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
